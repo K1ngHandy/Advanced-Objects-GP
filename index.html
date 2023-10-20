@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Advanced Objects GP</title>
+  </head>
+  <body>
+    <h1>Advanced Objects GP</h1>
+    <p>See console...</p>
+
+    <script>
+      // Intro to classes
+      class Player {
+        constructor(name) {
+          this.name = name;
+          this.points = 0;
+        }
+        greet() {
+          console.log(`Hello, I am ${this.name}`);
+        }
+        play() {
+          let randomNum = Math.floor(Math.random() * 10);
+          this.points += randomNum;
+          return `I gained ${randomNum} points and I am at ${this.points}`;
+        }
+      }
+
+      const playerOne = new Player("Player 1");
+      const playerTwo = new Player("Player 2");
+
+      console.log(playerOne);
+      console.log(playerTwo);
+
+      // Classes as containers of state
+      class Volume {
+        state = "";
+
+        print() {
+          console.log(`${this.state} (${this.state.length})`);
+        }
+        up() {
+          this.state += "▮";
+          this.print();
+        }
+        down() {
+          this.state = this.state.slice(0, this.state.length - 1);
+          this.print();
+        }
+      }
+      const knob = new Volume();
+
+      // Classes with advanced logic
+      class TrafficLight {
+        constructor(address) {
+          this.address = address;
+          this.colors = ["red", "green", "yellow"];
+          this.color = this.colors[0];
+        }
+        print() {
+          console.log(`The color is ${this.color}`);
+        }
+        change() {
+          let currentIdx = this.colors.indexOf(this.color);
+          console.log(currentIdx);
+          let nextIdx = currentIdx + 1;
+          if (nextIdx > 2) nextIdx = 0;
+          this.color = this.colors[nextIdx];
+          this.print();
+        }
+      }
+      const light = new TrafficLight("NYC");
+    </script>
+  </body>
+</html>
